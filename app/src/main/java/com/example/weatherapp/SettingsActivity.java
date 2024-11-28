@@ -59,12 +59,17 @@ public class SettingsActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean(UNIT_KEY, isChecked);
             editor.apply();
-
-            setResult(RESULT_OK);
         });
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
